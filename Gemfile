@@ -13,6 +13,7 @@ gem 'devise'
 
 group :test do
 	gem 'rspec-rails', '~> 3.5'
+	gem 'shoulda-matchers', '~> 3.0.0'
 	gem 'database_cleaner'
 	gem 'factory_girl_rails'
 	gem 'faker'
@@ -27,6 +28,7 @@ group :development do
   gem 'listen', '~> 3.0.5'
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-commands-rspec'
 end
 
 gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
