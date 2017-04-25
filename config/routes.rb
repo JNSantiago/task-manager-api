@@ -9,7 +9,7 @@ Rails.application.routes.draw do
 	namespace :api, defaults: { format: :json }, constraints: { subdomain: 'api' }, path: "/" do
 		# ApiVersionConstraint = recebe o número da versão no header.
 		namespace :v1, path: "/", constraints: ApiVersionConstraint.new(version: 1, default: true) do
-			
+			resources :users, only: [:show]
 		end
 	end
 end
