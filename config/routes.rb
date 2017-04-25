@@ -1,7 +1,7 @@
 require 'api_version_constraint' # libs/api_version_constraint.rb
 Rails.application.routes.draw do
 
-  devise_for :users
+  # devise_for :users
 	# api.task-manager.dev:3000/resource
 	# defaults = especifica o formato de transferẽncia de dados
 	# constraints = cria um subdominio com o nome api.
