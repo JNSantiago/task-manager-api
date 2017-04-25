@@ -67,4 +67,36 @@ RSpec.describe 'Users API', type: :request do
 		end
 	end
 
+	describe "PUT /users/:id" do
+		before do
+			headers = { 'Accept' => 'application/vnd.taskmanager.v1' }
+			put "/users/#{user_id}", params: { user: user_params }, headers: headers
+		end
+
+		context "Quando os parâmetros da requisição forem válidos" do
+			let(:user_params) { { email: 'new@email.com' } }
+
+			it 'retorna 200' do
+				expect(response).to have_http_status(200)
+			end
+
+			it 'retorna os dados json do usuario' do
+				user_response = JSON.parse(response.body, symbolize_names: true)
+				expect(user_response[:email]).to eq(user_params[:email])
+			end
+		end
+
+		context "Quando os parâmetros da requisição forem inválidos" do
+			let(:user_params) { { email: 'invalid_email@' } }
+
+			it 'retorna 422' do
+				expect(response).to have_http_status(422)
+			end
+
+			it 'retorna os dados json com os erros' do
+				user_response = JSON.parse(response.body, symbolize_names: true)
+				expect(user_response).to have_key(:errors)
+			end
+		end
+	end
 end
